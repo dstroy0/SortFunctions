@@ -1,0 +1,14 @@
+# SortFunctions Library Keywords
+
+# Data types (KEYWORD1)
+SORTFUNCTIONS	KEYWORD1
+
+# Functions (KEYWORD2)
+bubbleSort	KEYWORD2
+quickSort	KEYWORD2
+mergeSort	KEYWORD2
+selectionSort	KEYWORD2
+insertionSort	KEYWORD2
+sortArray	KEYWORD2
+
+# Constants (LITERAL1)
