@@ -24,50 +24,6 @@
 
 #include "SortFunctions.h"
 
-void setup()
-{
-    // Wait for serial port to connect (for boards with native USB)
-    while (!Serial)
-    {
-        delay(1);
-    }
-
-    Serial.println("SortFunctions Library - Basic Example");
-    Serial.println("=====================================");
-
-    // Define an unsorted array
-    int array[] = {64, 34, 25, 12, 22, 11, 90, 88};
-    int size = sizeof(array) / sizeof(array[0]);
-
-    // Print original array
-    Serial.println("\nOriginal array:");
-    printArray(array, size);
-
-    // Sort the array using bubble sort
-    bubbleSort(array, size);
-    Serial.println("\nAfter Bubble Sort:");
-    printArray(array, size);
-
-    // Reset array for next example
-    int array2[] = {64, 34, 25, 12, 22, 11, 90, 88};
-    Serial.println("\nUsing Quick Sort:");
-    quickSort(array2, 0, size - 1);
-    printArray(array2, size);
-
-    // Reset array for insertion sort
-    int array3[] = {64, 34, 25, 12, 22, 11, 90, 88};
-    Serial.println("\nUsing Insertion Sort:");
-    insertionSort(array3, size);
-    printArray(array3, size);
-}
-
-void loop()
-{
-    // Nothing to do in loop for this example
-    delay(10000); // Delay to avoid spamming serial
-}
-
-// Helper function to print array
 void printArray(int arr[], int size)
 {
     Serial.print("[ ");
@@ -78,4 +34,57 @@ void printArray(int arr[], int size)
             Serial.print(", ");
     }
     Serial.println(" ]");
+}
+
+void setup()
+{
+    Serial.begin(9600);
+    // Give native-USB boards (Leonardo, Zero, Due) up to 2 s to connect
+    while (!Serial && millis() < 2000)
+    {
+    }
+
+    Serial.println("SortFunctions Library - Basic Example");
+    Serial.println("=====================================");
+
+    int original[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    int size = sizeof(original) / sizeof(original[0]);
+
+    Serial.println("\nOriginal array:");
+    printArray(original, size);
+
+    // Bubble Sort
+    int arr1[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    bubbleSort(arr1, size);
+    Serial.println("\nAfter Bubble Sort:");
+    printArray(arr1, size);
+
+    // Selection Sort
+    int arr2[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    selectionSort(arr2, size);
+    Serial.println("\nAfter Selection Sort:");
+    printArray(arr2, size);
+
+    // Insertion Sort
+    int arr3[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    insertionSort(arr3, size);
+    Serial.println("\nAfter Insertion Sort:");
+    printArray(arr3, size);
+
+    // Quick Sort
+    int arr4[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    quickSort(arr4, 0, size - 1);
+    Serial.println("\nAfter Quick Sort:");
+    printArray(arr4, size);
+
+    // Merge Sort
+    int arr5[] = {64, 34, 25, 12, 22, 11, 90, 88};
+    mergeSort(arr5, 0, size - 1);
+    Serial.println("\nAfter Merge Sort:");
+    printArray(arr5, size);
+}
+
+void loop()
+{
+    delay(10000);
 }

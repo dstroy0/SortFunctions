@@ -23,6 +23,11 @@
 
 #include <Arduino.h>
 
+// Define as 0 before including this header to disable all input guards
+#ifndef SORTFUNCTIONS_INPUT_GUARDS
+#define SORTFUNCTIONS_INPUT_GUARDS 1
+#endif
+
 // Bubble Sort
 void bubbleSort(int arr[], int n);
 

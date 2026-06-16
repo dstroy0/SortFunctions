@@ -22,6 +22,10 @@
 // Bubble Sort Implementation
 void bubbleSort(int arr[], int n)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || n <= 0)
+        return;
+#endif
     for (int i = 0; i < n - 1; i++)
     {
         for (int j = 0; j < n - i - 1; j++)
@@ -40,6 +44,10 @@ void bubbleSort(int arr[], int n)
 // Selection Sort Implementation
 void selectionSort(int arr[], int n)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || n <= 0)
+        return;
+#endif
     for (int i = 0; i < n - 1; i++)
     {
         int minIdx = i;
@@ -60,6 +68,10 @@ void selectionSort(int arr[], int n)
 // Insertion Sort Implementation
 void insertionSort(int arr[], int n)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || n <= 0)
+        return;
+#endif
     for (int i = 1; i < n; i++)
     {
         int key = arr[i];
@@ -100,6 +112,10 @@ int partition(int arr[], int low, int high)
 // Quick Sort Implementation
 void quickSort(int arr[], int low, int high)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || low < 0 || high < low)
+        return;
+#endif
     if (low < high)
     {
         int pi = partition(arr, low, high);
@@ -114,8 +130,15 @@ void merge(int arr[], int left, int mid, int right)
     int leftSize = mid - left + 1;
     int rightSize = right - mid;
 
-    int leftArr[leftSize];
-    int rightArr[rightSize];
+    int *leftArr = (int *)malloc(leftSize * sizeof(int));
+    int *rightArr = (int *)malloc(rightSize * sizeof(int));
+
+    if (!leftArr || !rightArr)
+    {
+        free(leftArr);
+        free(rightArr);
+        return;
+    }
 
     for (int i = 0; i < leftSize; i++)
     {
@@ -149,11 +172,18 @@ void merge(int arr[], int left, int mid, int right)
     {
         arr[k++] = rightArr[j++];
     }
+
+    free(leftArr);
+    free(rightArr);
 }
 
 // Merge Sort Implementation
 void mergeSort(int arr[], int left, int right)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || left < 0 || right < left)
+        return;
+#endif
     if (left < right)
     {
         int mid = left + (right - left) / 2;
@@ -166,5 +196,9 @@ void mergeSort(int arr[], int left, int right)
 // Default sort function
 void sortArray(int arr[], int n)
 {
+#if SORTFUNCTIONS_INPUT_GUARDS
+    if (arr == NULL || n <= 0)
+        return;
+#endif
     bubbleSort(arr, n);
 }
